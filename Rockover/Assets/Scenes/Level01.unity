@@ -201,6 +201,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &183561931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 183561932}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &183561932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 183561931}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.029, y: 1.235, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1425448253}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187798580
 GameObject:
   m_ObjectHideFlags: 0
@@ -10724,6 +10752,7 @@ Transform:
   - {fileID: 940749110}
   - {fileID: 323933593}
   - {fileID: 1397339737}
+  - {fileID: 183561932}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10794,6 +10823,7 @@ MonoBehaviour:
   groundRadius: 0.1
   jumpForce: 450
   airControl: 1
+  countText: {fileID: 312843363}
 --- !u!114 &1425448257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10805,7 +10835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56eced446aa03b84aa5be6d9a6a740f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countText: {fileID: 312843363}
 --- !u!114 &1425448258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10818,7 +10847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  MaxLives: 2
+  MaxLives: 5
   HealthStatText: {fileID: 755066692}
 --- !u!4 &1426265358 stripped
 Transform:

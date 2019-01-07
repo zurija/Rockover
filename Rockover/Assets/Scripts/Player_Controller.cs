@@ -21,9 +21,10 @@ public class Player_Controller : MonoBehaviour {
     private bool facingRight;
     private bool grounded;
     [SerializeField] private bool airControl;
-    
-    // Collectables
-    
+
+    //PlayerCount
+    private int Schallplatten_count;
+    [SerializeField] Text countText;
 
     // Use this for initialization
     void Start() {
@@ -74,9 +75,7 @@ public class Player_Controller : MonoBehaviour {
     private void Flip(float horizontal) {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight) {
             facingRight = !facingRight;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            transform.Rotate(0f, 180f, 0f);
         }
     }
 
@@ -110,9 +109,7 @@ public class Player_Controller : MonoBehaviour {
     }
 
 
-    //PlayerCount
-    private int Schallplatten_count;
-    [SerializeField] Text countText;
+    
 
     void OnTriggerEnter2D(Collider2D other)
     {
