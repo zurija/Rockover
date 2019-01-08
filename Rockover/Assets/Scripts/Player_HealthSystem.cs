@@ -37,10 +37,7 @@ public class Player_HealthSystem : MonoBehaviour
             CurHealth = MaxHealth;
             SetHealthText();
         }
-        if (MaxLives == 0)
-        {
-            //  anim.Play("Die");
-        }
+        
         Debug.Log(MaxLives);
     }
    
