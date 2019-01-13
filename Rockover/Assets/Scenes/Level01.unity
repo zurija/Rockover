@@ -10666,8 +10666,8 @@ GameObject:
   - component: {fileID: 1425448254}
   - component: {fileID: 1425448255}
   - component: {fileID: 1425448256}
-  - component: {fileID: 1425448257}
   - component: {fileID: 1425448258}
+  - component: {fileID: 1425448259}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10824,17 +10824,6 @@ MonoBehaviour:
   jumpForce: 450
   airControl: 1
   countText: {fileID: 312843363}
---- !u!114 &1425448257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1425448250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eced446aa03b84aa5be6d9a6a740f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1425448258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10849,6 +10838,20 @@ MonoBehaviour:
   MaxHealth: 100
   MaxLives: 5
   HealthStatText: {fileID: 755066692}
+--- !u!114 &1425448259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1425448250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7142941f4baaee429fe1cb7ef5e10d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 183561932}
+  bulletPrefab: {fileID: 1188675120628450, guid: f9ac81ccaef4afb4f9d632a1829a8914,
+    type: 2}
 --- !u!4 &1426265358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4402127884897724, guid: 99019b8aa6e6bb14fb587d4b724e3c57,
