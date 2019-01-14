@@ -60,15 +60,16 @@ public class Player_Controller : MonoBehaviour {
     }
 
     private void HandleMovement(float horizontal) {
-        if (!this.myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || airControl)) {
-            myRigidbody.velocity = new Vector2(horizontal * MovementSpeed * Time.deltaTime, myRigidbody.velocity.y);  //x = -1 y = 0 ; 
+        if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || airControl)) {
+           myRigidbody.velocity =  new Vector2(horizontal * MovementSpeed * Time.deltaTime, myRigidbody.velocity.y);  
+           Debug.Log(myRigidbody.drag);
         }
         if (grounded && Jumping) {
             grounded = false;
-            myRigidbody.AddForce(new Vector2(0, jumpForce));
+            myRigidbody.AddForce(new Vector2(0, jumpForce*Time.deltaTime));
             myAnimator.SetTrigger("Jump");
-            myRigidbody.velocity = Vector2.zero;
-        }
+            myRigidbody.velocity = Vector2.zero; 
+        } 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
 
