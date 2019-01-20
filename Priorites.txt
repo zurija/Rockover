@@ -1,8 +1,12 @@
-// Respawn after death --> Schallplatten stay deleted, but player is respawned at spawn point
-hurt sound 
+// Respawn after death
+// UI (start game, restart) 
+hurt sound // hurt image
 level design complete first part
-UI (start game, pause, restart) 
+paparazzi
+	- walking 
+	- "damage" 
 moving on when collecting VIPbadge
 switch 
 level design complete
+endboss 
 

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player_HealthSystem : MonoBehaviour
 {
@@ -9,10 +11,14 @@ public class Player_HealthSystem : MonoBehaviour
     [SerializeField] private int MaxHealth;
     private Animator anim;
     [SerializeField] public int MaxLives;
-    protected int CurLives;
+    private int CurLives;
     private int FlamethrowerDamage;
-    [SerializeField] Text HealthStatText;
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] TextMeshProUGUI HealthStatText;
+    [SerializeField] Image damageImage; 
+    [SerializeField] private float flashSpeed = 5f;
+    [SerializeField] private Color flashColor = new Color(1f, 0f, 0f);
+    bool damaged; 
+
 
 
 
@@ -23,24 +29,35 @@ public class Player_HealthSystem : MonoBehaviour
         CurLives = MaxLives;
         anim = GetComponent<Animator>();
         GameObject Feuerwerfer = GameObject.Find("Feuerwerfer");
-        FlamethrowerDamage= Feuerwerfer.GetComponent<Flamethrower>().damage;
+        FlamethrowerDamage = Feuerwerfer.GetComponent<Flamethrower>().damage;
         SetHealthText();
     }
     private void FixedUpdate()
     {
+        
         playerHealthStats(); 
+
+        if (damaged)
+        {
+            damageImage.color = flashColor; 
+        } else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+        damaged = false; 
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Fire")) {
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            damaged = true;
             CurHealth = CurHealth - FlamethrowerDamage;
         }
-       
-       
-       
+
     }
-   
+
+
     void SetHealthText()
     {
         HealthStatText.text = "Leben: " + CurLives.ToString();
@@ -48,7 +65,7 @@ public class Player_HealthSystem : MonoBehaviour
 
     void playerHealthStats()
     {
-        if (CurHealth == 0)
+        if (CurHealth <= 0)
         {
             CurLives = CurLives - 1;
             CurHealth = MaxHealth;
@@ -59,9 +76,7 @@ public class Player_HealthSystem : MonoBehaviour
 
         if (CurLives == 0)
         {
-            gameObject.transform.position = spawnPoint.position; 
-            CurLives =  MaxLives;
-            SetHealthText(); 
+            SceneManager.LoadScene("GameOver");
         }
     }
 

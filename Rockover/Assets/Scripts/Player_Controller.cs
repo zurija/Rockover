@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player_Controller : MonoBehaviour {
     //references
@@ -9,13 +10,12 @@ public class Player_Controller : MonoBehaviour {
     private Animator myAnimator;
     [SerializeField] private Transform[] groundPoints;
     [SerializeField] private LayerMask whatIsGround;
-   
-   
-
+  
     //floats
     [SerializeField] private float MovementSpeed;
     [SerializeField] private float groundRadius;
     [SerializeField] private float jumpForce;
+  
 
     //boooleans
     private bool Jumping;
@@ -25,8 +25,10 @@ public class Player_Controller : MonoBehaviour {
 
     //PlayerCount
     private int Schallplatten_count;
-    [SerializeField] Text countText;
+    [SerializeField] TextMeshProUGUI countText;
 
+    //flashColor
+   
     // Use this for initialization
     void Start() {
         myRigidbody = GetComponent<Rigidbody2D>();
