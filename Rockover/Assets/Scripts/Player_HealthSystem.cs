@@ -9,21 +9,27 @@ public class Player_HealthSystem : MonoBehaviour
     [SerializeField] private int MaxHealth;
     private Animator anim;
     [SerializeField] public int MaxLives;
+    protected int CurLives;
     private int FlamethrowerDamage;
     [SerializeField] Text HealthStatText;
-    
+    [SerializeField] Transform spawnPoint;
+
 
 
     // Use this for initialization
     void Start()
     {
         CurHealth = MaxHealth;
+        CurLives = MaxLives;
         anim = GetComponent<Animator>();
         GameObject Feuerwerfer = GameObject.Find("Feuerwerfer");
         FlamethrowerDamage= Feuerwerfer.GetComponent<Flamethrower>().damage;
         SetHealthText();
     }
-   
+    private void FixedUpdate()
+    {
+        playerHealthStats(); 
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -31,25 +37,32 @@ public class Player_HealthSystem : MonoBehaviour
             CurHealth = CurHealth - FlamethrowerDamage;
         }
        
-        Debug.Log(CurHealth);
-        if (CurHealth == 0)
-        {
-            MaxLives = MaxLives - 1;
-            CurHealth = MaxHealth;
-            SetHealthText();
-        }
-        if (MaxLives == 0)
-        {
-            anim.SetBool("isDead", true);
-        } else
-        {
-            anim.SetBool("isDead", false);
-        }
-        Debug.Log(MaxLives);
+       
+       
     }
    
     void SetHealthText()
     {
-        HealthStatText.text = "Leben: " + MaxLives.ToString();
+        HealthStatText.text = "Leben: " + CurLives.ToString();
     }
+
+    void playerHealthStats()
+    {
+        if (CurHealth == 0)
+        {
+            CurLives = CurLives - 1;
+            CurHealth = MaxHealth;
+            SetHealthText();
+        }
+        Debug.Log(CurHealth);
+        Debug.Log(CurLives);
+
+        if (CurLives == 0)
+        {
+            gameObject.transform.position = spawnPoint.position; 
+            CurLives =  MaxLives;
+            SetHealthText(); 
+        }
+    }
+
 }

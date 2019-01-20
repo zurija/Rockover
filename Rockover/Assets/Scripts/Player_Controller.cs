@@ -10,6 +10,7 @@ public class Player_Controller : MonoBehaviour {
     [SerializeField] private Transform[] groundPoints;
     [SerializeField] private LayerMask whatIsGround;
    
+   
 
     //floats
     [SerializeField] private float MovementSpeed;
@@ -62,7 +63,7 @@ public class Player_Controller : MonoBehaviour {
     private void HandleMovement(float horizontal) {
         if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || airControl)) {
            myRigidbody.velocity =  new Vector2(horizontal * MovementSpeed * Time.deltaTime, myRigidbody.velocity.y);  
-           Debug.Log(myRigidbody.drag);
+         
         }
         if (grounded && Jumping) {
             grounded = false;
