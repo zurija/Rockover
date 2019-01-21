@@ -1,6 +1,6 @@
 // Respawn after death
 // UI (start game, restart) 
-hurt sound // hurt image
+hurt sound // hurt image //dying sound --> reißende Gitarrenseite 
 level design complete first part
 paparazzi
 	- walking 
