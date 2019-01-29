@@ -1,0 +1,12 @@
+// Respawn after death
+// UI (start game, restart) 
+hurt sound // hurt image //dying sound --> reiﬂende Gitarrenseite 
+level design complete first part
+paparazzi
+	- walking 
+	- "damage" 
+moving on when collecting VIPbadge
+switch 
+level design complete
+endboss 
+

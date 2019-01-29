@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player_Controller : MonoBehaviour {
     //references
@@ -9,22 +10,25 @@ public class Player_Controller : MonoBehaviour {
     private Animator myAnimator;
     [SerializeField] private Transform[] groundPoints;
     [SerializeField] private LayerMask whatIsGround;
-   
-
+  
     //floats
     [SerializeField] private float MovementSpeed;
     [SerializeField] private float groundRadius;
     [SerializeField] private float jumpForce;
+  
 
     //boooleans
     private bool Jumping;
     private bool facingRight;
     private bool grounded;
     [SerializeField] private bool airControl;
-    
-    // Collectables
-    
 
+    //PlayerCount
+    private int Schallplatten_count;
+    [SerializeField] TextMeshProUGUI countText;
+
+    //flashColor
+   
     // Use this for initialization
     void Start() {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -59,24 +63,23 @@ public class Player_Controller : MonoBehaviour {
     }
 
     private void HandleMovement(float horizontal) {
-        if (!this.myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || airControl)) {
-            myRigidbody.velocity = new Vector2(horizontal * MovementSpeed * Time.deltaTime, myRigidbody.velocity.y);  //x = -1 y = 0 ; 
+        if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || airControl)) {
+           myRigidbody.velocity =  new Vector2(horizontal * MovementSpeed * Time.deltaTime, myRigidbody.velocity.y);  
+         
         }
         if (grounded && Jumping) {
             grounded = false;
-            myRigidbody.AddForce(new Vector2(0, jumpForce));
+            myRigidbody.AddForce(new Vector2(0, jumpForce*Time.deltaTime));
             myAnimator.SetTrigger("Jump");
-            myRigidbody.velocity = Vector2.zero;
-        }
+            myRigidbody.velocity = Vector2.zero; 
+        } 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
 
     private void Flip(float horizontal) {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight) {
             facingRight = !facingRight;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            transform.Rotate(0f, 180f, 0f);
         }
     }
 
@@ -110,9 +113,7 @@ public class Player_Controller : MonoBehaviour {
     }
 
 
-    //PlayerCount
-    private int Schallplatten_count;
-    [SerializeField] Text countText;
+    
 
     void OnTriggerEnter2D(Collider2D other)
     {
