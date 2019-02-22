@@ -1,11 +1,10 @@
 // Respawn after death
 // UI (start game, restart) 
-hurt sound // hurt image //dying sound --> reißende Gitarrenseite 
-level design complete first part
+//hurt sound // hurt image //dying sound --> reißende Gitarrenseite 
+level design complete first part --> going to the next part only with VIP Badge 
 paparazzi
 	- walking 
 	- "damage" 
-moving on when collecting VIPbadge
 switch 
 level design complete
 endboss 

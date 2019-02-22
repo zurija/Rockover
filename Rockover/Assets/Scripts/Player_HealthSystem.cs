@@ -39,6 +39,7 @@ public class Player_HealthSystem : MonoBehaviour
 
         if (damaged)
         {
+            SoundManagerScript.PlaySound("PlayerHit");
             damageImage.color = flashColor; 
         } else
         {
@@ -76,6 +77,7 @@ public class Player_HealthSystem : MonoBehaviour
 
         if (CurLives == 0)
         {
+            SoundManagerScript.PlaySound("GameOver"); 
             SceneManager.LoadScene("GameOver");
         }
     }

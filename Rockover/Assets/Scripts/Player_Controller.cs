@@ -68,6 +68,7 @@ public class Player_Controller : MonoBehaviour {
          
         }
         if (grounded && Jumping) {
+            SoundManagerScript.PlaySound("PlayerJump"); 
             grounded = false;
             myRigidbody.AddForce(new Vector2(0, jumpForce*Time.deltaTime));
             myAnimator.SetTrigger("Jump");
