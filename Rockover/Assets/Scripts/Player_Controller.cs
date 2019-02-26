@@ -22,6 +22,7 @@ public class Player_Controller : MonoBehaviour {
     private bool facingRight;
     private bool grounded;
     [SerializeField] private bool airControl;
+    private bool hasBadge;
 
     //PlayerCount
     private int Schallplatten_count;
@@ -34,6 +35,7 @@ public class Player_Controller : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         facingRight = true;
+        hasBadge = false; 
 
         //counts
         Schallplatten_count = 0;
@@ -118,23 +120,26 @@ public class Player_Controller : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Schallplatte") || other.gameObject.CompareTag("Schallplatte_g") || other.gameObject.CompareTag("Schallplatte_p"))
+        switch (other.gameObject.tag)
         {
-            Destroy(other.gameObject);
-            if (other.gameObject.CompareTag("Schallplatte"))
-            {
+            case ("Schallplatte"):
                 Schallplatten_count = Schallplatten_count + 1;
-            }
-            if (other.gameObject.CompareTag("Schallplatte_g"))
-            {
+                Destroy(other.gameObject);
+                break;
+            case ("Schallplatte_g"):
                 Schallplatten_count = Schallplatten_count + 5;
-            }
-            if (other.gameObject.CompareTag("Schallplatte_p"))
-            {
+                Destroy(other.gameObject);
+                break;
+            case ("Schallplatte_p"):
                 Schallplatten_count = Schallplatten_count + 10;
-            }
-            SetCountText();
+                Destroy(other.gameObject);
+                break;
+            case ("VIP"):
+                other.gameObject.SetActive(false);
+                hasBadge = true;
+                break;
         }
+        SetCountText();
 
 
     }

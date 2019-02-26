@@ -8,6 +8,7 @@ TagManager:
   - Schallplatte_g
   - Schallplatte_p
   - Fire
+  - VIP
   layers:
   - Default
   - TransparentFX
