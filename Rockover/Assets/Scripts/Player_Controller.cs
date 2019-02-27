@@ -22,7 +22,7 @@ public class Player_Controller : MonoBehaviour {
     private bool facingRight;
     private bool grounded;
     [SerializeField] private bool airControl;
-    private bool hasBadge;
+    public bool hasBadge;
 
     //PlayerCount
     private int Schallplatten_count;

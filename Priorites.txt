@@ -1,7 +1,8 @@
 // Respawn after death
 // UI (start game, restart) 
 //hurt sound // hurt image //dying sound --> reißende Gitarrenseite 
-level design complete first part --> going to the next part only with VIP Badge 
+//level design complete first part --> going to the next part only with VIP Badge 
+design door, door opening 
 paparazzi
 	- walking 
 	- "damage" 
