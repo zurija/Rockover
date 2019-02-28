@@ -50,12 +50,12 @@ public class Player_HealthSystem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Fire"))
-        {
-            damaged = true;
-            CurHealth = CurHealth - FlamethrowerDamage;
+        switch(other.gameObject.tag){
+            case ("Fire"):
+                damaged = true;
+                CurHealth = CurHealth - FlamethrowerDamage;
+                break;
         }
-
     }
 
 
