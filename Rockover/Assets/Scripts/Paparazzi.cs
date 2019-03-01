@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Paparazzi : MonoBehaviour {
+public class Paparazzi : Character {
 
     Rigidbody2D myRigibody;
     Animator myAnimator;
@@ -15,7 +15,8 @@ public class Paparazzi : MonoBehaviour {
     public int health = 100; 
 
     // Use this for initialization
-    void Start () {
+    public override void Start () {
+        base.Start();
         myRigibody = GetComponent<Rigidbody2D> ();
         myAnimator = GetComponent<Animator> ();
         effectImage.enabled = false; 

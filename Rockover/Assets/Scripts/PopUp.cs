@@ -11,7 +11,7 @@ public class PopUp : MonoBehaviour
     [SerializeField] Transform player;
     private BoxCollider2D Door_Collider;
     private bool badge;
-    [SerializeField] float showOnDistance;
+    [SerializeField] float ShowOnDistance;
 
     // Use this for initialization
     void Start()
@@ -30,7 +30,7 @@ public class PopUp : MonoBehaviour
 
     private void ShowPopUp()
     {
-        if (Vector3.Distance(transform.position, player.position) < showOnDistance && badge == false)
+        if (Vector3.Distance(transform.position, player.position) < ShowOnDistance && badge == false)
         {
             Popup.enabled = true;
         }
