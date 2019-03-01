@@ -6,43 +6,55 @@ using UnityEngine.UI;
 public class Paparazzi : Character {
 
     Rigidbody2D myRigibody;
-    Animator myAnimator;
-    [SerializeField] float speed;
     [SerializeField] Transform player;
     [SerializeField] float distance;
     [SerializeField] Image effectImage;
     [SerializeField] float flashSpeed;
-    public int health = 100; 
+    public int health = 100;
+    private IPaparazziState CurrentState;
 
     // Use this for initialization
     public override void Start () {
         base.Start();
         myRigibody = GetComponent<Rigidbody2D> ();
-        myAnimator = GetComponent<Animator> ();
-        effectImage.enabled = false; 
+        effectImage.enabled = false;
+        ChangeState(new PatrolState());
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        CurrentState.Execute();
         PaparazziMove();
-        takePhoto();
+        TakePhoto();
 	}
 
-    void PaparazziMove()
+    public void PaparazziMove()
     {
-        //myRigibody.velocity = new Vector2(speed * Time.deltaTime, 0);
-       //transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        transform.Translate(GetDirection() * (movementSpeed * Time.deltaTime));
+    }
+
+    public Vector2 GetDirection()
+    {
+
+        return facingRight ? Vector2.right : Vector2.left;
+    }
+    public void ChangeState(IPaparazziState NewState)
+    {
+        if(CurrentState != null)
+        {
+            CurrentState.Exit();
+        }
+        CurrentState = NewState;
+        CurrentState.Enter(this);
     }
 
     
 
-    public void takePhoto()
+    public void TakePhoto()
     {
         if (Vector3.Distance(transform.position, player.position) < distance)
         {
             effectImage.enabled = true;
-
-
         }
         else effectImage.enabled = false; 
          //sound

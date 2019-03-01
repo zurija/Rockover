@@ -2615,11 +2615,11 @@ MonoBehaviour:
     lineCount: 3
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -3856,6 +3856,7 @@ GameObject:
   - component: {fileID: 643740875}
   - component: {fileID: 643740879}
   - component: {fileID: 643740880}
+  - component: {fileID: 643740881}
   m_Layer: 0
   m_Name: Paparazzi
   m_TagString: Untagged
@@ -3882,7 +3883,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!95 &643740876
 Animator:
   serializedVersion: 3
@@ -3954,7 +3955,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 643740874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.951189, y: 7.94, z: 0.10763181}
+  m_LocalPosition: {x: 10.64, y: 7.94, z: 0.10763181}
   m_LocalScale: {x: 0.38362762, y: 0.38362762, z: 0.38362762}
   m_Children: []
   m_Father: {fileID: 655765110}
@@ -3996,12 +3997,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed6a2812b9f904419b68f1a8e695a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  movementSpeed: 1
   player: {fileID: 1425448253}
   distance: 5
   effectImage: {fileID: 874577103}
   flashSpeed: 20
   health: 100
+--- !u!114 &643740881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643740874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382beea4a0ba29c439dabf4671dc4e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 1425448255}
 --- !u!4 &646367335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4817963041486692, guid: 9c1bf739c111635499825a9a4e1a90cc,
@@ -6252,6 +6265,7 @@ GameObject:
   - component: {fileID: 943843183}
   - component: {fileID: 943843182}
   - component: {fileID: 943843181}
+  - component: {fileID: 943843186}
   m_Layer: 0
   m_Name: Paparazzi (2)
   m_TagString: Untagged
@@ -6283,7 +6297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed6a2812b9f904419b68f1a8e695a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 180
+  movementSpeed: 1
   player: {fileID: 1425448253}
   distance: 5
   effectImage: {fileID: 874577103}
@@ -6333,7 +6347,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!95 &943843184
 Animator:
   serializedVersion: 3
@@ -6398,6 +6412,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &943843186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 943843179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382beea4a0ba29c439dabf4671dc4e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 1425448255}
 --- !u!4 &945439371 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4644035070102446, guid: 13357e0cd9c92e74b97d22f7745a7aea,
@@ -6731,6 +6757,7 @@ GameObject:
   - component: {fileID: 1005761837}
   - component: {fileID: 1005761836}
   - component: {fileID: 1005761835}
+  - component: {fileID: 1005761840}
   m_Layer: 0
   m_Name: Paparazzi (3)
   m_TagString: Untagged
@@ -6762,7 +6789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed6a2812b9f904419b68f1a8e695a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 180
+  movementSpeed: 1
   player: {fileID: 1425448253}
   distance: 5
   effectImage: {fileID: 874577103}
@@ -6812,7 +6839,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!95 &1005761838
 Animator:
   serializedVersion: 3
@@ -6877,6 +6904,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1005761840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1005761833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382beea4a0ba29c439dabf4671dc4e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 1425448255}
 --- !u!4 &1015501529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4644035070102446, guid: 13357e0cd9c92e74b97d22f7745a7aea,
@@ -78851,6 +78890,7 @@ GameObject:
   - component: {fileID: 1187516749}
   - component: {fileID: 1187516748}
   - component: {fileID: 1187516747}
+  - component: {fileID: 1187516752}
   m_Layer: 0
   m_Name: Paparazzi (1)
   m_TagString: Untagged
@@ -78865,7 +78905,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1187516745}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6367426, y: -23.010714, z: 0.10763181}
+  m_LocalPosition: {x: 3.5, y: -23.010714, z: 0.10763181}
   m_LocalScale: {x: 0.38362762, y: 0.38362762, z: 0.38362762}
   m_Children: []
   m_Father: {fileID: 655765110}
@@ -78882,7 +78922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed6a2812b9f904419b68f1a8e695a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 180
+  movementSpeed: 1
   player: {fileID: 1425448253}
   distance: 5
   effectImage: {fileID: 874577103}
@@ -78932,7 +78972,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!95 &1187516750
 Animator:
   serializedVersion: 3
@@ -78997,6 +79037,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1187516752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1187516745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382beea4a0ba29c439dabf4671dc4e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 1425448255}
 --- !u!4 &1193045541 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4817963041486692, guid: 9c1bf739c111635499825a9a4e1a90cc,
@@ -79351,7 +79403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Popup: {fileID: 457054400}
   player: {fileID: 1425448253}
-  showOnDistance: 5
+  ShowOnDistance: 0
 --- !u!61 &1232784597
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -80709,7 +80761,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1425448250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.34, y: -7.75, z: 0}
+  m_LocalPosition: {x: 8.4, y: -24.7, z: 0}
   m_LocalScale: {x: 0.3481415, y: 0.34814158, z: 0.34814158}
   m_Children:
   - {fileID: 940749110}
@@ -81885,7 +81937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Popup: {fileID: 0}
   player: {fileID: 0}
-  showOnDistance: 0
+  ShowOnDistance: 0
 --- !u!1 &1661216669
 GameObject:
   m_ObjectHideFlags: 0
@@ -82017,11 +82069,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -141569,11 +141621,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

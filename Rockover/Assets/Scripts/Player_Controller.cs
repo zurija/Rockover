@@ -63,7 +63,7 @@ public class Player_Controller : Character {
     }
 
     private void HandleMovement(float horizontal) {
-        if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || AirControl)) {
+        if (!MyAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || AirControl)) {
            myRigidbody.velocity =  new Vector2(horizontal * movementSpeed * Time.deltaTime, myRigidbody.velocity.y);  
          
         }
@@ -71,10 +71,10 @@ public class Player_Controller : Character {
             SoundManagerScript.PlaySound("PlayerJump"); 
             grounded = false;
             myRigidbody.AddForce(new Vector2(0, jumpForce*Time.deltaTime));
-            myAnimator.SetTrigger("Jump");
+            MyAnimator.SetTrigger("Jump");
             myRigidbody.velocity = Vector2.zero; 
         } 
-        myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+        MyAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
 
     private void Flip(float horizontal) {
@@ -104,11 +104,11 @@ public class Player_Controller : Character {
     private void HandleLayers() {
         if (!grounded)
         {
-            myAnimator.SetLayerWeight(1, 1);
+            MyAnimator.SetLayerWeight(1, 1);
         }
         else
         {
-            myAnimator.SetLayerWeight(1, 0);
+            MyAnimator.SetLayerWeight(1, 0);
         }
     }
 

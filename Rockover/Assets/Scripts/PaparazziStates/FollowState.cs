@@ -6,7 +6,7 @@ public class FollowState : IPaparazziState
 {
     public void Enter(Paparazzi Paparazzi)
     {
-        t
+        
     }
 
     public void Execute()

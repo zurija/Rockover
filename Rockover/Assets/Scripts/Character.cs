@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour {
-    protected Animator myAnimator;
+    public Animator MyAnimator { get; private set; }
     [SerializeField] protected float movementSpeed;
     protected bool facingRight;
 
     // Use this for initialization
     public virtual void Start () {
-        myAnimator = GetComponent<Animator>();
+        MyAnimator = GetComponent<Animator>();
         facingRight = true;
     }
 	
