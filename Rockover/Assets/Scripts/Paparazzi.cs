@@ -59,7 +59,6 @@ public class Paparazzi : MonoBehaviour {
 
     void Die()
     {
-       
         Destroy(gameObject);
     }
 

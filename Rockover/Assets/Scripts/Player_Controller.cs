@@ -4,24 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Player_Controller : MonoBehaviour {
+public class Player_Controller : Character {
     //references
     private Rigidbody2D myRigidbody;
-    private Animator myAnimator;
+    
     [SerializeField] private Transform[] groundPoints;
     [SerializeField] private LayerMask whatIsGround;
   
     //floats
-    [SerializeField] private float MovementSpeed;
+    
     [SerializeField] private float groundRadius;
     [SerializeField] private float jumpForce;
   
 
     //boooleans
     private bool Jumping;
-    private bool facingRight;
     private bool grounded;
-    [SerializeField] private bool airControl;
+    [SerializeField] private bool AirControl;
     public bool hasBadge;
 
     //PlayerCount
@@ -31,10 +30,9 @@ public class Player_Controller : MonoBehaviour {
     //flashColor
    
     // Use this for initialization
-    void Start() {
+    public override void Start() {
+        base.Start(); 
         myRigidbody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
-        facingRight = true;
         hasBadge = false; 
 
         //counts
@@ -65,8 +63,8 @@ public class Player_Controller : MonoBehaviour {
     }
 
     private void HandleMovement(float horizontal) {
-        if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || airControl)) {
-           myRigidbody.velocity =  new Vector2(horizontal * MovementSpeed * Time.deltaTime, myRigidbody.velocity.y);  
+        if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || AirControl)) {
+           myRigidbody.velocity =  new Vector2(horizontal * movementSpeed * Time.deltaTime, myRigidbody.velocity.y);  
          
         }
         if (grounded && Jumping) {
@@ -81,8 +79,7 @@ public class Player_Controller : MonoBehaviour {
 
     private void Flip(float horizontal) {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight) {
-            facingRight = !facingRight;
-            transform.Rotate(0f, 180f, 0f);
+            ChangeDirection();
         }
     }
 
