@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolState : IPaparazziState
+public class RangeState : IPaparazziState
 
 {
-    private Paparazzi paparazzi;
+    private Paparazzi Paparazzi;
 
     public void Enter(Paparazzi paparazzi)
     {
-        this.paparazzi = paparazzi;
+        this.Paparazzi = paparazzi;
     }
 
     public void Execute()
     {
-        paparazzi.PaparazziMove();
-        Debug.Log("Im Patrolling");
-        if (paparazzi.Target != null)
+        if (Paparazzi.Target != null)
         {
-            paparazzi.ChangeState(new PatrolState());
+            Paparazzi.PaparazziMove();
+        } else
+        {
+            Paparazzi.ChangeState(new PatrolState());
         }
     }
 
@@ -31,7 +32,7 @@ public class PatrolState : IPaparazziState
     {
         if (other.tag == "Edge")
         {
-            paparazzi.ChangeDirection();
+            Paparazzi.ChangeDirection();
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Paparazzi : Character {
 
     Rigidbody2D myRigibody;
+    [SerializeField] public GameObject Target;
     [SerializeField] Transform player;
     [SerializeField] float distance;
     [SerializeField] Image effectImage;
@@ -25,9 +26,23 @@ public class Paparazzi : Character {
 	void FixedUpdate () {
         CurrentState.Execute();
         PaparazziMove();
+        LookAtTarget();
         TakePhoto();
-	}
+    }
+    private void LookAtTarget()
+    {
+        if (Target != null)
+        {
+            
+            float xDir = Target.transform.position.x - transform.position.x;
+            if(xDir < 0 && facingRight || xDir > 0 && !facingRight)
+            {
+                ChangeDirection();
+            }
+        }
+        
 
+    }
     public void PaparazziMove()
     {
         transform.Translate(GetDirection() * (movementSpeed * Time.deltaTime));
@@ -72,6 +87,7 @@ public class Paparazzi : Character {
 
     void Die()
     {
+         //sound
         Destroy(gameObject);
     }
     void OnTriggerEnter2D(Collider2D other)
