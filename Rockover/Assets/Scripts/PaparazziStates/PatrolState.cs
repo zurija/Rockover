@@ -25,6 +25,9 @@ public class PatrolState : IPaparazziState
 
     public void OnTriggerEnter(Collider2D other)
     {
-       
+        if (other.tag == "Edge")
+        {
+            paparazzi.ChangeDirection();
+        }
     }
 }

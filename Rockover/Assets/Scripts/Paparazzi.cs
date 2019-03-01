@@ -74,6 +74,9 @@ public class Paparazzi : Character {
     {
         Destroy(gameObject);
     }
-
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        CurrentState.OnTriggerEnter(other);
+    }
 }
 
