@@ -15,10 +15,9 @@ public class PatrolState : IPaparazziState
     public void Execute()
     {
         paparazzi.PaparazziMove();
-        Debug.Log("Im Patrolling");
         if (paparazzi.Target != null)
         {
-            paparazzi.ChangeState(new PatrolState());
+            paparazzi.ChangeState(new RangeState());
         }
     }
 

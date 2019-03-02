@@ -14,11 +14,16 @@ public class RangeState : IPaparazziState
 
     public void Execute()
     {
+       
         if (Paparazzi.Target != null)
         {
             Paparazzi.PaparazziMove();
+            Paparazzi.MyAnimator.SetFloat("speed", 1);
+            Paparazzi.movementSpeed = 1.5f;
         } else
         {
+            Paparazzi.MyAnimator.SetFloat("speed", 0);
+            Paparazzi.movementSpeed = 1.5f;
             Paparazzi.ChangeState(new PatrolState());
         }
     }

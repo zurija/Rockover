@@ -4,8 +4,10 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour {
     public Animator MyAnimator { get; private set; }
-    [SerializeField] protected float movementSpeed;
+    [SerializeField] public float movementSpeed;
     protected bool facingRight;
+    
+    
 
     // Use this for initialization
     public virtual void Start () {

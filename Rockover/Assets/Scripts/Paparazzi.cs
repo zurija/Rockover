@@ -7,18 +7,16 @@ public class Paparazzi : Character {
 
     Rigidbody2D myRigibody;
     [SerializeField] public GameObject Target;
-    [SerializeField] Transform player;
     [SerializeField] float distance;
     [SerializeField] Image effectImage;
-    [SerializeField] float flashSpeed;
     public int health = 100;
     private IPaparazziState CurrentState;
+    
 
     // Use this for initialization
     public override void Start () {
         base.Start();
         myRigibody = GetComponent<Rigidbody2D> ();
-        effectImage.enabled = false;
         ChangeState(new PatrolState());
     }
 	
@@ -33,7 +31,6 @@ public class Paparazzi : Character {
     {
         if (Target != null)
         {
-            
             float xDir = Target.transform.position.x - transform.position.x;
             if(xDir < 0 && facingRight || xDir > 0 && !facingRight)
             {
@@ -67,7 +64,7 @@ public class Paparazzi : Character {
 
     public void TakePhoto()
     {
-        if (Vector3.Distance(transform.position, player.position) < distance)
+        if (Vector2.Distance(transform.position, Target.transform.position) < distance)
         {
             effectImage.enabled = true;
         }
@@ -87,7 +84,7 @@ public class Paparazzi : Character {
 
     void Die()
     {
-         //sound
+        effectImage.enabled = false;
         Destroy(gameObject);
     }
     void OnTriggerEnter2D(Collider2D other)
