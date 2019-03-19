@@ -6,18 +6,19 @@ using UnityEngine.UI;
 public class Paparazzi : Character {
 
     Rigidbody2D myRigibody;
-    [SerializeField] public GameObject Target;
-    [SerializeField] float distance;
-    [SerializeField] Image effectImage;
+    public GameObject Target;
+    [SerializeField] private float distance;
+    [SerializeField] public Image effectImage;
     public int health = 100;
     private IPaparazziState CurrentState;
-    
+
 
     // Use this for initialization
     public override void Start () {
         base.Start();
         myRigibody = GetComponent<Rigidbody2D> ();
         ChangeState(new PatrolState());
+        effectImage.enabled = false; 
     }
 	
 	// Update is called once per frame
@@ -25,9 +26,8 @@ public class Paparazzi : Character {
         CurrentState.Execute();
         PaparazziMove();
         LookAtTarget();
-        TakePhoto();
     }
-    private void LookAtTarget()
+   private void LookAtTarget()
     {
         if (Target != null)
         {
@@ -37,9 +37,8 @@ public class Paparazzi : Character {
                 ChangeDirection();
             }
         }
-        
-
-    }
+    } 
+    
     public void PaparazziMove()
     {
         transform.Translate(GetDirection() * (movementSpeed * Time.deltaTime));
@@ -60,17 +59,10 @@ public class Paparazzi : Character {
         CurrentState.Enter(this);
     }
 
-    
-
-    public void TakePhoto()
+   public void TakePhoto()
     {
-        if (Vector2.Distance(transform.position, Target.transform.position) < distance)
-        {
-            effectImage.enabled = true;
-        }
-        else effectImage.enabled = false; 
-         //sound
-    }
+        effectImage.enabled = true;
+    } 
 
     public void TakeDamage(int damage)
     {

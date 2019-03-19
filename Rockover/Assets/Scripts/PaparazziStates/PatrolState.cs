@@ -10,6 +10,7 @@ public class PatrolState : IPaparazziState
     public void Enter(Paparazzi paparazzi)
     {
         this.paparazzi = paparazzi;
+        paparazzi.Target = null;
     }
 
     public void Execute()

@@ -8,7 +8,7 @@ public class PopUp : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI Popup;
-    [SerializeField] Transform player;
+    [SerializeField] private Transform player;
     private BoxCollider2D Door_Collider;
     private bool badge;
     [SerializeField] float ShowOnDistance;
@@ -30,14 +30,7 @@ public class PopUp : MonoBehaviour
 
     private void ShowPopUp()
     {
-        if (Vector3.Distance(transform.position, player.position) < ShowOnDistance && badge == false)
-        {
-            Popup.enabled = true;
-        }
-        else
-        {
-            Popup.enabled = false;
-        }
+        Popup.enabled = Vector2.Distance(transform.position, player.position) < ShowOnDistance && badge == false ? true : false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

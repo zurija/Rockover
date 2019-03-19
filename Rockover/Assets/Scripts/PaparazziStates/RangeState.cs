@@ -20,8 +20,10 @@ public class RangeState : IPaparazziState
             Paparazzi.PaparazziMove();
             Paparazzi.MyAnimator.SetFloat("speed", 1);
             Paparazzi.movementSpeed = 1.5f;
+            Paparazzi.TakePhoto();
         } else
         {
+            Paparazzi.effectImage.enabled = false; 
             Paparazzi.MyAnimator.SetFloat("speed", 0);
             Paparazzi.movementSpeed = 1.5f;
             Paparazzi.ChangeState(new PatrolState());
