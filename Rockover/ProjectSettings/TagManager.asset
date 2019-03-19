@@ -10,6 +10,7 @@ TagManager:
   - Fire
   - VIP
   - Edge
+  - MovePlatform
   layers:
   - Default
   - TransparentFX

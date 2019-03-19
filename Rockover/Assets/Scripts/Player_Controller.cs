@@ -137,9 +137,23 @@ public class Player_Controller : Character {
                 break;
         }
         SetCountText();
-
-
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       if (collision.transform.tag == "MovePlatform")
+        {
+            transform.parent = collision.transform;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "MovePlatform")
+        {
+            transform.parent = null;
+        }
+    }
+
+
     void SetCountText()
     {
         countText.text = "Schallplatten: " + Schallplatten_count.ToString();
