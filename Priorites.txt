@@ -2,11 +2,14 @@
 // UI (start game, restart) 
 //hurt sound // hurt image //dying sound --> reißende Gitarrenseite 
 //level design complete first part --> going to the next part only with VIP Badge 
-design door, door opening 
-paparazzi
+//design door, door opening 
+//paparazzi
 	- walking 
 	- "damage" 
-switch 
-level design complete
+//switch 
+//level design complete
+
+FIX BUG WITH FIRE POINT
+
 endboss 
 

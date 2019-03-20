@@ -12,10 +12,6 @@ public class PopUp : MonoBehaviour
     private BoxCollider2D Door_Collider;
     private bool badge;
     [SerializeField] float ShowOnDistance;
-    
-   
-    
-
 
     // Use this for initialization
     void Start()

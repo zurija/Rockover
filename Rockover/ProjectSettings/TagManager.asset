@@ -11,6 +11,7 @@ TagManager:
   - VIP
   - Edge
   - MovePlatform
+  - Schalter
   layers:
   - Default
   - TransparentFX

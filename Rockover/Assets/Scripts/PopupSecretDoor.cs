@@ -10,33 +10,30 @@ public class PopupSecretDoor : MonoBehaviour {
     [SerializeField] TextMeshProUGUI Popup;
     [SerializeField] private Transform player;
     private BoxCollider2D Door_Collider;
-    private bool switchOn;
     [SerializeField] float ShowOnDistance;
+    private GameObject Schalter; 
 
     // Use this for initialization
     void Start()
     {
         Popup.enabled = false;
         Door_Collider = GetComponent<BoxCollider2D>();
-        GameObject Schalter = GameObject.FindGameObjectWithTag("Schalter");
-        switchOn = Schalter.GetComponent<Switch>().SwitchIsOn;
+        Schalter = GameObject.FindGameObjectWithTag("Schalter");
     }
 
     void FixedUpdate()
     {
         ShowPopUp();
-        Debug.Log(switchOn);
     }
 
     private void ShowPopUp()
     {
-        Popup.enabled = Vector3.Distance(transform.position, player.position) < ShowOnDistance && switchOn == false ? true : false;
-        
+        Popup.enabled = Vector2.Distance(transform.position, player.position) < ShowOnDistance && Schalter.GetComponent<Switch>().SwitchIsOn == false ? true : false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (switchOn == true)
+        if (Schalter.GetComponent<Switch>().SwitchIsOn == true)
         {
             Door_Collider.enabled = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;

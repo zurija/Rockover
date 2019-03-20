@@ -24,6 +24,7 @@ public abstract class Character : MonoBehaviour {
     {
         facingRight = !facingRight;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        
     }
 
 }
