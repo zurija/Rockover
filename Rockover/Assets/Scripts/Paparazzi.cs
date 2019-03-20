@@ -1,31 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Paparazzi : MonoBehaviour {
+public class Paparazzi : Character {
 
     Rigidbody2D myRigibody;
-    Animator myAnimator;
-    [SerializeField] float speed;
-    public int health = 100; 
+    public GameObject Target;
+    [SerializeField] private float distance;
+    [SerializeField] public Image effectImage;
+    public int health = 100;
+    private IPaparazziState CurrentState;
+
 
     // Use this for initialization
-    void Start () {
+    public override void Start () {
+        base.Start();
         myRigibody = GetComponent<Rigidbody2D> ();
-        myAnimator = GetComponent<Animator> ();
+        ChangeState(new PatrolState());
+        effectImage.enabled = false; 
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-       // PaparazziMove();
-	}
-
-    void PaparazziMove()
+        CurrentState.Execute();
+        PaparazziMove();
+        LookAtTarget();
+    }
+   private void LookAtTarget()
     {
-        myRigibody.velocity = new Vector2(speed * Time.deltaTime, 0);
+        if (Target != null)
+        {
+            float xDir = Target.transform.position.x - transform.position.x;
+            if(xDir < 0 && facingRight || xDir > 0 && !facingRight)
+            {
+                ChangeDirection();
+            }
+        }
+    } 
+    
+    public void PaparazziMove()
+    {
+        transform.Translate(GetDirection() * (movementSpeed * Time.deltaTime));
     }
 
-    //public GameObject deathEffect;
+    public Vector2 GetDirection()
+    {
+
+        return facingRight ? Vector2.right : Vector2.left;
+    }
+    public void ChangeState(IPaparazziState NewState)
+    {
+        if(CurrentState != null)
+        {
+            CurrentState.Exit();
+        }
+        CurrentState = NewState;
+        CurrentState.Enter(this);
+    }
+
+   public void TakePhoto()
+    {
+        effectImage.enabled = true;
+    } 
 
     public void TakeDamage(int damage)
     {
@@ -39,9 +76,12 @@ public class Paparazzi : MonoBehaviour {
 
     void Die()
     {
-       // Instantiate(deathEffect, transform.position, Quaternion.identity);
+        effectImage.enabled = false;
         Destroy(gameObject);
     }
-
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        CurrentState.OnTriggerEnter(other);
+    }
 }
 

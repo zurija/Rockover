@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Player_Controller : MonoBehaviour {
+public class Player_Controller : Character {
     //references
     private Rigidbody2D myRigidbody;
-    private Animator myAnimator;
+    
     [SerializeField] private Transform[] groundPoints;
     [SerializeField] private LayerMask whatIsGround;
   
     //floats
-    [SerializeField] private float MovementSpeed;
+    
     [SerializeField] private float groundRadius;
     [SerializeField] private float jumpForce;
   
 
     //boooleans
     private bool Jumping;
-    private bool facingRight;
     private bool grounded;
-    [SerializeField] private bool airControl;
+    [SerializeField] private bool AirControl;
+    public bool hasBadge;
 
     //PlayerCount
     private int Schallplatten_count;
@@ -30,10 +30,10 @@ public class Player_Controller : MonoBehaviour {
     //flashColor
    
     // Use this for initialization
-    void Start() {
+    public override void Start() {
+        base.Start(); 
         myRigidbody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
-        facingRight = true;
+        hasBadge = false; 
 
         //counts
         Schallplatten_count = 0;
@@ -63,23 +63,23 @@ public class Player_Controller : MonoBehaviour {
     }
 
     private void HandleMovement(float horizontal) {
-        if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || airControl)) {
-           myRigidbody.velocity =  new Vector2(horizontal * MovementSpeed * Time.deltaTime, myRigidbody.velocity.y);  
+        if (!MyAnimator.GetCurrentAnimatorStateInfo(0).IsTag("PlayerJump") && (grounded || AirControl)) {
+           myRigidbody.velocity =  new Vector2(horizontal * movementSpeed * Time.deltaTime, myRigidbody.velocity.y);  
          
         }
         if (grounded && Jumping) {
+            SoundManagerScript.PlaySound("PlayerJump"); 
             grounded = false;
             myRigidbody.AddForce(new Vector2(0, jumpForce*Time.deltaTime));
-            myAnimator.SetTrigger("Jump");
+            MyAnimator.SetTrigger("Jump");
             myRigidbody.velocity = Vector2.zero; 
         } 
-        myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+        MyAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
 
     private void Flip(float horizontal) {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight) {
-            facingRight = !facingRight;
-            transform.Rotate(0f, 180f, 0f);
+            ChangeDirection();
         }
     }
 
@@ -104,11 +104,11 @@ public class Player_Controller : MonoBehaviour {
     private void HandleLayers() {
         if (!grounded)
         {
-            myAnimator.SetLayerWeight(1, 1);
+            MyAnimator.SetLayerWeight(1, 1);
         }
         else
         {
-            myAnimator.SetLayerWeight(1, 0);
+            MyAnimator.SetLayerWeight(1, 0);
         }
     }
 
@@ -117,26 +117,43 @@ public class Player_Controller : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Schallplatte") || other.gameObject.CompareTag("Schallplatte_g") || other.gameObject.CompareTag("Schallplatte_p"))
+        switch (other.gameObject.tag)
         {
-            Destroy(other.gameObject);
-            if (other.gameObject.CompareTag("Schallplatte"))
-            {
+            case ("Schallplatte"):
                 Schallplatten_count = Schallplatten_count + 1;
-            }
-            if (other.gameObject.CompareTag("Schallplatte_g"))
-            {
+                Destroy(other.gameObject);
+                break;
+            case ("Schallplatte_g"):
                 Schallplatten_count = Schallplatten_count + 5;
-            }
-            if (other.gameObject.CompareTag("Schallplatte_p"))
-            {
+                Destroy(other.gameObject);
+                break;
+            case ("Schallplatte_p"):
                 Schallplatten_count = Schallplatten_count + 10;
-            }
-            SetCountText();
+                Destroy(other.gameObject);
+                break;
+            case ("VIP"):
+                other.gameObject.SetActive(false);
+                hasBadge = true;
+                break;
         }
-
-
+        SetCountText();
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       if (collision.transform.tag == "MovePlatform")
+        {
+            transform.parent = collision.transform;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "MovePlatform")
+        {
+            transform.parent = null;
+        }
+    }
+
+
     void SetCountText()
     {
         countText.text = "Schallplatten: " + Schallplatten_count.ToString();

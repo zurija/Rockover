@@ -25,12 +25,14 @@ public class Player_HealthSystem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         CurHealth = MaxHealth;
         CurLives = MaxLives;
+        SetHealthText();
         anim = GetComponent<Animator>();
         GameObject Feuerwerfer = GameObject.Find("Feuerwerfer");
         FlamethrowerDamage = Feuerwerfer.GetComponent<Flamethrower>().damage;
-        SetHealthText();
+        
     }
     private void FixedUpdate()
     {
@@ -39,6 +41,7 @@ public class Player_HealthSystem : MonoBehaviour
 
         if (damaged)
         {
+            SoundManagerScript.PlaySound("PlayerHit");
             damageImage.color = flashColor; 
         } else
         {
@@ -49,12 +52,12 @@ public class Player_HealthSystem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Fire"))
-        {
-            damaged = true;
-            CurHealth = CurHealth - FlamethrowerDamage;
+        switch(other.gameObject.tag){
+            case ("Fire"):
+                damaged = true;
+                CurHealth = CurHealth - FlamethrowerDamage;
+                break;
         }
-
     }
 
 
@@ -76,6 +79,7 @@ public class Player_HealthSystem : MonoBehaviour
 
         if (CurLives == 0)
         {
+            SoundManagerScript.PlaySound("GameOver"); 
             SceneManager.LoadScene("GameOver");
         }
     }
