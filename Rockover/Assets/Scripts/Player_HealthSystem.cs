@@ -25,12 +25,14 @@ public class Player_HealthSystem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         CurHealth = MaxHealth;
         CurLives = MaxLives;
+        SetHealthText();
         anim = GetComponent<Animator>();
         GameObject Feuerwerfer = GameObject.Find("Feuerwerfer");
         FlamethrowerDamage = Feuerwerfer.GetComponent<Flamethrower>().damage;
-        SetHealthText();
+        
     }
     private void FixedUpdate()
     {
