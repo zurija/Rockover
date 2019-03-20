@@ -6,20 +6,25 @@ using TMPro;
 
 public class PopUp : MonoBehaviour
 {
-
+    
     [SerializeField] TextMeshProUGUI Popup;
     [SerializeField] private Transform player;
     private BoxCollider2D Door_Collider;
     private bool badge;
     [SerializeField] float ShowOnDistance;
+    
+   
+    
+
 
     // Use this for initialization
     void Start()
     {
         Popup.enabled = false;
         Door_Collider = GetComponent<BoxCollider2D>();
-        GameObject Player = GameObject.Find("Player");
+        GameObject Player = GameObject.FindGameObjectWithTag("Player");
         badge = Player.GetComponent<Player_Controller>().hasBadge;
+        
     }
 
     // Update is called once per frame
@@ -38,7 +43,7 @@ public class PopUp : MonoBehaviour
         if (badge == true)
         {
             Door_Collider.enabled = false;
-
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
         else
         {
