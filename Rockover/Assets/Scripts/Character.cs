@@ -8,7 +8,7 @@ public abstract class Character : MonoBehaviour {
     [SerializeField] public float movementSpeed;
     protected bool facingRight;
     [SerializeField] public float EnemyHealth;
-    Slider mySlider; 
+    [SerializeField] private Slider mySlider; 
     
     
 
@@ -49,7 +49,6 @@ public abstract class Character : MonoBehaviour {
                 GetComponent<Paparazzi>().effectImage.enabled = false;
                 break;
             case "Boss":
-                mySlider = GameObject.Find("Slider").GetComponent<Slider>();
                 mySlider.gameObject.SetActive(false);
                 break;
         }
