@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour {
     public Animator MyAnimator;
     [SerializeField] public float movementSpeed;
     protected bool facingRight;
     [SerializeField] public float EnemyHealth;
+    Slider mySlider; 
     
     
 
@@ -14,6 +16,7 @@ public abstract class Character : MonoBehaviour {
     public virtual void Start () {
         MyAnimator = GetComponent<Animator>();
         facingRight = true;
+        
     }
 
     public  void ChangeDirection()
@@ -31,7 +34,7 @@ public abstract class Character : MonoBehaviour {
     {
         EnemyHealth -= damage;
 
-        if (EnemyHealth <= 0)
+        if (EnemyHealth < 0)
         {
             Die();
         }
@@ -46,7 +49,8 @@ public abstract class Character : MonoBehaviour {
                 GetComponent<Paparazzi>().effectImage.enabled = false;
                 break;
             case "Boss":
-                GetComponent<Boss>().healthBar.enabled = false;
+                mySlider = GameObject.Find("Slider").GetComponent<Slider>();
+                mySlider.gameObject.SetActive(false);
                 break;
         }
         Destroy(gameObject);
