@@ -38,12 +38,18 @@ public abstract class Character : MonoBehaviour {
     }
 
     void Die()
+        
     {
-        Destroy(gameObject);
-        if (gameObject.tag == "Paparazzi")
+        switch (gameObject.tag)
         {
-            GetComponent<Paparazzi>().effectImage.enabled = false;
+            case "Paparazzi":
+                GetComponent<Paparazzi>().effectImage.enabled = false;
+                break;
+            case "Boss":
+                GetComponent<Boss>().healthBar.enabled = false;
+                break;
         }
+        Destroy(gameObject);
     }
 
 }

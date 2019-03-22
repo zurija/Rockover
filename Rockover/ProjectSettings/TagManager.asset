@@ -13,6 +13,7 @@ TagManager:
   - MovePlatform
   - Schalter
   - Paparazzi
+  - Boss
   layers:
   - Default
   - TransparentFX
