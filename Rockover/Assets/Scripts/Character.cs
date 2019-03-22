@@ -6,6 +6,7 @@ public abstract class Character : MonoBehaviour {
     public Animator MyAnimator;
     [SerializeField] public float movementSpeed;
     protected bool facingRight;
+    [SerializeField] public float EnemyHealth;
     
     
 
@@ -14,17 +15,35 @@ public abstract class Character : MonoBehaviour {
         MyAnimator = GetComponent<Animator>();
         facingRight = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public  void ChangeDirection()
     {
         facingRight = !facingRight;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         
+    }
+    public void ChangeDirectionPlayer()
+    {
+        facingRight = !facingRight;
+        transform.Rotate(0, 180, 0);
+    }
+    public void TakeDamage(int damage)
+    {
+        EnemyHealth -= damage;
+
+        if (EnemyHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+        if (gameObject.tag == "Paparazzi")
+        {
+            GetComponent<Paparazzi>().effectImage.enabled = false;
+        }
     }
 
 }

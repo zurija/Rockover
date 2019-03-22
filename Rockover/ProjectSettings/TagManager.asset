@@ -12,6 +12,7 @@ TagManager:
   - Edge
   - MovePlatform
   - Schalter
+  - Paparazzi
   layers:
   - Default
   - TransparentFX

@@ -79,7 +79,7 @@ public class Player_Controller : Character {
 
     private void Flip(float horizontal) {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight) {
-            ChangeDirection();
+            ChangeDirectionPlayer();
         }
     }
 

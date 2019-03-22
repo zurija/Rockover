@@ -5,7 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour {
 
     public float speed = 20f;
-    public int damage = 40;
+    public int damage = 20;
     public Rigidbody2D rb;
    
 
@@ -22,7 +22,11 @@ public class bullet : MonoBehaviour {
         {
             Paparazzi.TakeDamage(damage);
         }
-        Debug.Log(hitInfo);
+        Boss Boss = hitInfo.GetComponent <Boss>();
+        if (Boss != null)
+        {
+            Boss.TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
     

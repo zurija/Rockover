@@ -20,7 +20,7 @@ public class RangeState : IPaparazziState
             Paparazzi.PaparazziMove();
             Paparazzi.MyAnimator.SetFloat("speed", 1);
             Paparazzi.movementSpeed = 1.5f;
-            Paparazzi.TakePhoto();
+            Paparazzi.effectImage.enabled = true;
         } else
         {
             Paparazzi.effectImage.enabled = false; 

@@ -9,7 +9,6 @@ public class Paparazzi : Character {
     public GameObject Target;
     [SerializeField] private float distance;
     [SerializeField] public Image effectImage;
-    public int health = 100;
     private IPaparazziState CurrentState;
 
 
@@ -59,26 +58,7 @@ public class Paparazzi : Character {
         CurrentState.Enter(this);
     }
 
-   public void TakePhoto()
-    {
-        effectImage.enabled = true;
-    } 
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        effectImage.enabled = false;
-        Destroy(gameObject);
-    }
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         CurrentState.OnTriggerEnter(other);
