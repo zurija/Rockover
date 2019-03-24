@@ -7,16 +7,19 @@ using TMPro;
 
 public class Player_HealthSystem : MonoBehaviour
 {
-    private int CurHealth;
+    private float CurHealth;
     [SerializeField] private int MaxHealth;
     private Animator anim;
     [SerializeField] public int MaxLives;
-    private int CurLives;
-    private int FlamethrowerDamage;
+    private float CurLives;
+    private float FlamethrowerDamage;
+    private float BossDamage; 
     [SerializeField] TextMeshProUGUI HealthStatText;
     [SerializeField] Image damageImage; 
     [SerializeField] private float flashSpeed = 5f;
     [SerializeField] private Color flashColor = new Color(1f, 0f, 0f);
+    [SerializeField] private GameObject Feuerwerfer;
+    [SerializeField] private GameObject Boss;
     bool damaged; 
 
 
@@ -30,8 +33,8 @@ public class Player_HealthSystem : MonoBehaviour
         CurLives = MaxLives;
         SetHealthText();
         anim = GetComponent<Animator>();
-        GameObject Feuerwerfer = GameObject.Find("Feuerwerfer");
         FlamethrowerDamage = Feuerwerfer.GetComponent<Flamethrower>().damage;
+        BossDamage = Boss.GetComponent<Boss>().damage; 
         
     }
     private void FixedUpdate()
@@ -56,6 +59,17 @@ public class Player_HealthSystem : MonoBehaviour
             case ("Fire"):
                 damaged = true;
                 CurHealth = CurHealth - FlamethrowerDamage;
+                break;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case ("Boss"):
+                damaged = true;
+                CurHealth = CurHealth - BossDamage;
                 break;
         }
     }

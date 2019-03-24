@@ -36,7 +36,7 @@ public class PopupSecretDoor : MonoBehaviour {
         if (Schalter.GetComponent<Switch>().SwitchIsOn == true)
         {
             Door_Collider.enabled = false;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.SetActive(false);
         }
         else
         {

@@ -20,7 +20,6 @@ public class PopUp : MonoBehaviour
         Door_Collider = GetComponent<BoxCollider2D>();
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
         badge = Player.GetComponent<Player_Controller>().hasBadge;
-        
     }
 
     // Update is called once per frame
@@ -39,7 +38,7 @@ public class PopUp : MonoBehaviour
         if (badge == true)
         {
             Door_Collider.enabled = false;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.SetActive(false);
         }
         else
         {
