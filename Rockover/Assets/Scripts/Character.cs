@@ -8,7 +8,8 @@ public abstract class Character : MonoBehaviour {
     [SerializeField] public float movementSpeed;
     protected bool facingRight;
     [SerializeField] public float EnemyHealth;
-    [SerializeField] private Slider mySlider; 
+    [SerializeField] private Slider mySlider;
+    [SerializeField] private GameObject DeathEffect;
     
     
 
@@ -43,6 +44,8 @@ public abstract class Character : MonoBehaviour {
     void Die()
         
     {
+        Instantiate(DeathEffect, transform.position, Quaternion.identity);
+        Destroy(DeathEffect, 2f);
         switch (gameObject.tag)
         {
             case "Paparazzi":
@@ -53,6 +56,7 @@ public abstract class Character : MonoBehaviour {
                 break;
         }
         Destroy(gameObject);
+        
     }
 
 }
