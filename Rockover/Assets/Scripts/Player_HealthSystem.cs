@@ -88,8 +88,6 @@ public class Player_HealthSystem : MonoBehaviour
             CurHealth = MaxHealth;
             SetHealthText();
         }
-        Debug.Log(CurHealth);
-        Debug.Log(CurLives);
 
         if (CurLives == 0)
         {

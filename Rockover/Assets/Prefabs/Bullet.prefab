@@ -102,6 +102,7 @@ MonoBehaviour:
   speed: 150
   damage: 20
   rb: {fileID: 50518264209222942}
+  hiteffect: {fileID: 1371225713427534, guid: 2269f8cec4e4bb64b9112b4fb648ccc4, type: 2}
 --- !u!212 &212068412607686306
 SpriteRenderer:
   m_ObjectHideFlags: 1
