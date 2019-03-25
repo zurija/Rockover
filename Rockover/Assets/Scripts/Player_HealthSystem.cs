@@ -9,9 +9,8 @@ public class Player_HealthSystem : MonoBehaviour
 {
     private float CurHealth;
     [SerializeField] private int MaxHealth;
-    private Animator anim;
-    [SerializeField] public int MaxLives;
-    private float CurLives;
+    [SerializeField] public float MaxLives;
+    public float CurLives;
     private float FlamethrowerDamage;
     private float BossDamage; 
     [SerializeField] TextMeshProUGUI HealthStatText;
@@ -20,7 +19,7 @@ public class Player_HealthSystem : MonoBehaviour
     [SerializeField] private Color flashColor = new Color(1f, 0f, 0f);
     [SerializeField] private GameObject Feuerwerfer;
     [SerializeField] private GameObject Boss;
-    bool damaged; 
+    bool damaged;
 
 
 
@@ -28,19 +27,18 @@ public class Player_HealthSystem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
-        CurHealth = MaxHealth;
+
         CurLives = MaxLives;
+        CurHealth = MaxHealth;
         SetHealthText();
-        anim = GetComponent<Animator>();
         FlamethrowerDamage = Feuerwerfer.GetComponent<Flamethrower>().damage;
-        BossDamage = Boss.GetComponent<Boss>().damage; 
-        
+        BossDamage = Boss.GetComponent<Boss>().damage;
+        Debug.Log(CurLives);
     }
     private void FixedUpdate()
     {
         
-        playerHealthStats(); 
+        playerHealthStats();
 
         if (damaged)
         {
@@ -50,7 +48,8 @@ public class Player_HealthSystem : MonoBehaviour
         {
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
-        damaged = false; 
+        damaged = false;
+  
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -75,8 +74,9 @@ public class Player_HealthSystem : MonoBehaviour
     }
 
 
-    void SetHealthText()
+    public void SetHealthText()
     {
+        
         HealthStatText.text = "Leben: " + CurLives.ToString();
     }
 
@@ -84,7 +84,7 @@ public class Player_HealthSystem : MonoBehaviour
     {
         if (CurHealth <= 0)
         {
-            CurLives = CurLives - 1;
+           CurLives = CurLives - 1;
             CurHealth = MaxHealth;
             SetHealthText();
         }
@@ -95,5 +95,6 @@ public class Player_HealthSystem : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
+   
 
 }

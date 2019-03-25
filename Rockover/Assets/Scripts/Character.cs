@@ -10,6 +10,9 @@ public abstract class Character : MonoBehaviour {
     [SerializeField] public float EnemyHealth;
     [SerializeField] private Slider mySlider;
     [SerializeField] private GameObject DeathEffect;
+    [SerializeField] private GameObject BossPrefab;
+    [SerializeField] private float minSize;
+
     
     
 
@@ -53,6 +56,16 @@ public abstract class Character : MonoBehaviour {
                 break;
             case "Boss":
                 mySlider.gameObject.SetActive(false);
+                if(transform.localScale.y > minSize)
+                {
+
+                    GameObject clone1 = Instantiate(BossPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
+                    GameObject clone2 = Instantiate(BossPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
+                    clone1.transform.localScale = new Vector2(transform.localScale.x * 0.5f, transform.localScale.y * 0.5f);
+                    clone1.GetComponent<Character>().EnemyHealth = 100;
+                    clone2.transform.localScale = new Vector2(transform.localScale.x * 0.5f, transform.localScale.y * 0.5f);
+                    clone2.GetComponent<Character>().EnemyHealth = 100;
+                }
                 break;
         }
         Destroy(gameObject);

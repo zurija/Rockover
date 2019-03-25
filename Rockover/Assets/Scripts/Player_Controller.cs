@@ -24,7 +24,7 @@ public class Player_Controller : Character {
     public bool hasBadge;
 
     //PlayerCount
-    private int Schallplatten_count;
+    public int Schallplatten_count;
     [SerializeField] TextMeshProUGUI countText;
 
     //flashColor
@@ -157,5 +157,12 @@ public class Player_Controller : Character {
     void SetCountText()
     {
         countText.text = "Schallplatten: " + Schallplatten_count.ToString();
+        if (Schallplatten_count >= 100)
+        {
+            Schallplatten_count = 0;
+            gameObject.GetComponent<Player_HealthSystem>().CurLives += 1;
+            gameObject.GetComponent<Player_HealthSystem>().SetHealthText();
+
+        }
     }
 }
