@@ -76,7 +76,6 @@ public class Player_HealthSystem : MonoBehaviour
 
     public void SetHealthText()
     {
-        
         HealthStatText.text = "Leben: " + CurLives.ToString();
     }
 
