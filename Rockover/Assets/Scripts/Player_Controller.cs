@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Player_Controller : Character {
     //references
@@ -134,6 +135,10 @@ public class Player_Controller : Character {
             case ("VIP"):
                 other.gameObject.SetActive(false);
                 hasBadge = true;
+                break;
+            case ("Drummer"):
+                Debug.Log("jj");
+                SceneManager.LoadScene("EndScene");
                 break;
         }
         SetCountText();

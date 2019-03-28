@@ -8,9 +8,9 @@ public class ChasingBehaviour : StateMachineBehaviour {
     public float minTime;
     public float maxTime;
 
-    private Transform playerPos;
+    public Transform playerPos;
     [SerializeField] private float speed;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     [SerializeField] private float JumpForce;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

@@ -6,14 +6,13 @@ public class CameraFollow : MonoBehaviour {
 
     private Vector2 Velocity;
 
-    public float smoothTimeY;
-    public float smoothTimeX; 
+    [SerializeField] public float smoothTimeY;
+    [SerializeField] public float smoothTimeX; 
 
-    public GameObject Player; 
+    [SerializeField] public GameObject Player; 
 
 	// Use this for initialization
 	void Start () {
-        Player = GameObject.Find("Player"); 
 	}
 	
 	// Update is called once per frame
