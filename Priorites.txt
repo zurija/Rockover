@@ -9,7 +9,7 @@
 //switch 
 //level design complete
 
-FIX BUG WITH FIRE POINT
+//FIX BUG WITH FIRE POINT
 
 endboss 
 
