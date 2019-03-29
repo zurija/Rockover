@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EndLevelDoor : MonoBehaviour {
 
-    private GameObject Boss;
+    public GameObject[] Boss;
 
     private void Start()
     {
@@ -12,17 +12,11 @@ public class EndLevelDoor : MonoBehaviour {
     }
 
     void FixedUpdate () {
-        Boss = GameObject.FindGameObjectWithTag("Boss");
-        checkBoss();
-	}
-
-    public void checkBoss()
-    {
-        if (Boss != null) {
-            gameObject.SetActive(true);
-        } else
+        Boss = GameObject.FindGameObjectsWithTag("Boss");
+        if (Boss.Length == 0)
         {
-        gameObject.SetActive(false);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;
         }
-    }
+	}
 }
