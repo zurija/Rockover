@@ -4,28 +4,16 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour {
 
-    [SerializeField] private float speed = 20f;
-    [SerializeField] public int damage = 20;
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] GameObject hiteffect;
-    private GameObject[] Sight;
-    private BoxCollider2D[] SightCollider;
+    public float speed = 20f;
+    public int damage = 20;
+    public Rigidbody2D rb;
    
 
     // Use this for initialization
     void Start()
     {
         rb.velocity = transform.right * speed * Time.deltaTime;
-        Sight = GameObject.FindGameObjectsWithTag("Sight");
-       /* for (int i = 0; i < Sight.Length; i++)
-        {
-            SightCollider[i] = Sight[i].gameObject.GetComponent<BoxCollider2D>();
-            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), SightCollider[i], true);
-        }
-     foreach(GameObject human in Sight)
-        {
-            Debug.Log(human.name);
-        } */
+
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -41,10 +29,10 @@ public class bullet : MonoBehaviour {
         {
             Boss.TakeDamage(damage);
         }
-        Instantiate(hiteffect, transform.position, transform.rotation);
-        Destroy(hiteffect, 2f);
+        Instantiate(Resources.Load("hitEffect"), transform.position, transform.rotation);
         Destroy(gameObject);
         Debug.Log(hitInfo);
     }
     
+
 }

@@ -71,7 +71,7 @@ public class Player_Controller : Character {
         if (grounded && Jumping) {
             SoundManagerScript.PlaySound("PlayerJump"); 
             grounded = false;
-            myRigidbody.AddForce(new Vector2(0, jumpForce*Time.deltaTime));
+            myRigidbody.AddForce(new Vector2(0, jumpForce)*Time.deltaTime);
             MyAnimator.SetTrigger("Jump");
             myRigidbody.velocity = Vector2.zero; 
         } 

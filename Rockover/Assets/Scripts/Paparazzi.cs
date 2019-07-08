@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Paparazzi : Character {
 
-    Rigidbody2D myRigibody;
+ 
     public GameObject Target;
     [SerializeField] private float distance;
     [SerializeField] public Image effectImage;
@@ -15,7 +15,7 @@ public class Paparazzi : Character {
     // Use this for initialization
     public override void Start () {
         base.Start();
-        myRigibody = GetComponent<Rigidbody2D> ();
+        
         ChangeState(new PatrolState());
         effectImage.enabled = false; 
     }

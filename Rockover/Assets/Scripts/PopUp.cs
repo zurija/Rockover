@@ -9,7 +9,7 @@ public class PopUp : MonoBehaviour
     
     [SerializeField] TextMeshProUGUI Popup;
     [SerializeField] private Transform player;
-    private BoxCollider2D Door_Collider;
+    public GameObject Player; 
     private bool badge;
     [SerializeField] float ShowOnDistance;
 
@@ -17,15 +17,14 @@ public class PopUp : MonoBehaviour
     void Start()
     {
         Popup.enabled = false;
-        Door_Collider = GetComponent<BoxCollider2D>();
-        GameObject Player = GameObject.FindGameObjectWithTag("Player");
-        badge = Player.GetComponent<Player_Controller>().hasBadge;
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         ShowPopUp();
+        badge = Player.GetComponent<Player_Controller>().hasBadge;
     }
 
     private void ShowPopUp()
@@ -35,14 +34,15 @@ public class PopUp : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (badge == true)
         {
-            Door_Collider.enabled = false;
+          
             gameObject.SetActive(false);
         }
         else
         {
-            Door_Collider.enabled = true;
+            gameObject.SetActive(true);
         }
     }
 }
