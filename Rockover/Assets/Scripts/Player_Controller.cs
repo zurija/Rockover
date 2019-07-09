@@ -46,12 +46,12 @@ public class Player_Controller : Character {
         float horizontal = Input.GetAxis("Horizontal");
         HandleInput();
 
+        grounded = isGrounded();
+
         HandleMovement(horizontal);
 
         HandleLayers();
-
-        grounded = isGrounded();
-
+        
         Flip(horizontal);
 
         ResetValues();
@@ -60,7 +60,7 @@ public class Player_Controller : Character {
     private void HandleInput() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Jumping = true;
-        }
+        } 
     }
 
     private void HandleMovement(float horizontal) {

@@ -47,8 +47,8 @@ public abstract class Character : MonoBehaviour {
     void Die()
         
     {
-        Instantiate(DeathEffect, transform.position, Quaternion.identity);
-        Destroy(DeathEffect, 2f);
+        Instantiate(Resources.Load("Bloodsplash"), transform.position, Quaternion.identity);
+       // Destroy(DeathEffect, 2f);
         switch (gameObject.tag)
         {
             case "Paparazzi":
@@ -59,8 +59,8 @@ public abstract class Character : MonoBehaviour {
                 if(transform.localScale.y > minSize)
                 {
 
-                    GameObject clone1 = Instantiate(BossPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
-                    GameObject clone2 = Instantiate(BossPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
+                    GameObject clone1 = Instantiate(Resources.Load("Boss"), new Vector2(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
+                    GameObject clone2 = Instantiate(Resources.Load("Boss"), new Vector2(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
                     clone1.transform.localScale = new Vector2(transform.localScale.x * 0.5f, transform.localScale.y * 0.5f);
                     clone1.GetComponent<Character>().EnemyHealth = 100;
                     clone2.transform.localScale = new Vector2(transform.localScale.x * 0.5f, transform.localScale.y * 0.5f);
