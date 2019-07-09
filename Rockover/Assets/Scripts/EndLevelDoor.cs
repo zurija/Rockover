@@ -15,8 +15,7 @@ public class EndLevelDoor : MonoBehaviour {
         Boss = GameObject.FindGameObjectsWithTag("Boss");
         if (Boss.Length == 0)
         {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<Collider2D>().enabled = false;
+            gameObject.SetActive(false);
         }
 	}
 }
