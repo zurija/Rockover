@@ -16,7 +16,8 @@ public class Boss : Character {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        healthBar.value = EnemyHealth; 
+        if(healthBar != null)
+            healthBar.value = EnemyHealth; 
 	}
 
    

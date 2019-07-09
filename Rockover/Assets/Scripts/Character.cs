@@ -55,7 +55,8 @@ public abstract class Character : MonoBehaviour {
                 GetComponent<Paparazzi>().effectImage.enabled = false;
                 break;
             case "Boss":
-                mySlider.gameObject.SetActive(false);
+                if(mySlider != null)
+                    mySlider.gameObject.SetActive(false);
                 if(transform.localScale.y > minSize)
                 {
 
